@@ -17,7 +17,9 @@ This provides the REST API. See https://github.com/MosesMunene/MuseStockExchange
  - GlassFish 4.1 (make sure its 4.1, there is a patch that I did on 4.1 and have not tested with others)
  
  #Procedure
- Clone this repo on eclipse, install GlassFish 4.1 and everything should run (hopefully. Stay tuned for more... if any)
+ - Clone this repo on eclipse, 
+ - install GlassFish 4.1 
+ - Run muse_stock_exchange_ddl.sql in Mysql
  
  #Tests
  Coming soon...
