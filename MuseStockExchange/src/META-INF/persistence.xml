@@ -13,9 +13,14 @@
 		<class>com.muse.model.Company</class>
 		<class>com.muse.model.Stock</class>
 		<class>com.muse.model.Order</class>
+		<class>com.muse.model.PersonStock</class>
+		<class>com.muse.model.StockTransaction</class>
+		<class>com.muse.model.CashTransaction</class>
 		<class>com.muse.model.LocalDateTimeConverter</class>
 		<properties>
 			<property name="eclipselink.session.customizer" value="com.muse.model.UUIDSequence" />
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
 		</properties>
 	</persistence-unit>
 
@@ -28,14 +33,21 @@
 		<class>com.muse.model.Company</class>
 		<class>com.muse.model.Stock</class>
 		<class>com.muse.model.Order</class>
+		<class>com.muse.model.PersonStockPK</class>
+		<class>com.muse.model.PersonStock</class>
 		<class>com.muse.model.LocalDateTimeConverter</class>
 		<class>com.muse.model.UUIDSequence</class>
+		<class>com.muse.model.StockTransaction</class>
+		<class>com.muse.model.CashTransaction</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/muse_stock_exchange" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/muse_stock_exchange" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
 			<property name="eclipselink.session.customizer" value="com.muse.model.UUIDSequence" />
+			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
 		</properties>
 	</persistence-unit>
 

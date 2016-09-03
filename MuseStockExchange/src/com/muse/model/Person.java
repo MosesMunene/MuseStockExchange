@@ -42,7 +42,7 @@ public class Person implements Serializable{
 	 @XmlElement
 	private String personId;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "credential_id")
 	 @XmlElement
 	private Credential credential;
@@ -51,9 +51,11 @@ public class Person implements Serializable{
 	@JsonBackReference
 	private AuthAccessElement authAccessElement;
 	
-	@OneToMany(mappedBy = "person")
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	List<Order> orderList  = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	List<PersonStock> personStockList = new ArrayList<>();
 	
 	public Person() {
 		
@@ -83,6 +85,23 @@ public class Person implements Serializable{
 		this.authAccessElement = authAccessElement;
 	}
 	
+	
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+	public List<PersonStock> getPersonStockList() {
+		return personStockList;
+	}
+
+	public void setPersonStockList(List<PersonStock> personStockList) {
+		this.personStockList = personStockList;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [personId=" + personId + ", credential=" + credential + "]";

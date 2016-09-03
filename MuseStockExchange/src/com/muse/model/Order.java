@@ -18,10 +18,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.muse.rest.LocalDateTimeDeserializer;
+import com.muse.rest.LocalDateTimeSerializer;
+
 @Entity
 @XmlRootElement
 @Table(name = "order_tbl")
-@NamedQueries({ @NamedQuery(name = "Order.getAllAorders", query = "select o from Order o") })
+@NamedQueries({ @NamedQuery(name = "Order.getOrdersFilterByStatus", query = "select o from Order o where o.status = :status") })
 public class Order {
 
 	@Id
@@ -44,14 +49,22 @@ public class Order {
 	private BigDecimal price;
 
 	@Column(name = "created")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime created = LocalDateTime.now();
 
 	@Column(name = "expiry")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime expiry = this.created.plus(Duration.ofDays(5));
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private OrderType type;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private OrderStatus status;
 
 	public Order() {
 		// TODO Auto-generated constructor stub
@@ -119,6 +132,15 @@ public class Order {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
 	}
 
 	@Override

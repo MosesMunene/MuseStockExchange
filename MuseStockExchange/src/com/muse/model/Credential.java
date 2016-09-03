@@ -25,7 +25,6 @@ public class Credential implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "credential_id")
 	private String userName;
 	
@@ -38,7 +37,7 @@ public class Credential implements Serializable{
 	private Role role;
 	
 	public Credential() {
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public String getUserName() {

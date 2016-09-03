@@ -1,14 +1,19 @@
-package com.muse.model;
+package com.muse.rest;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.muse.model.Stock;
 
 public class Quote implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Stock stock;
+	private String stockId;
 	private long totalDemand;
 	private long totalSupply;
 	private double bestBid;
@@ -18,19 +23,28 @@ public class Quote implements Serializable{
 	private double change;
 	private long turnOver;
 	private long deals;
-	private LocalTime time;
+	
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	private LocalDateTime time;
 	
 	public Quote() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Stock getStock() {
-		return stock;
+	
+
+	public String getStockId() {
+		return stockId;
 	}
 
-	public void setStock(Stock stock) {
-		this.stock = stock;
+
+
+	public void setStockId(String stockId) {
+		this.stockId = stockId;
 	}
+
+
 
 	public long getTotalDemand() {
 		return totalDemand;
@@ -104,11 +118,11 @@ public class Quote implements Serializable{
 		this.deals = deals;
 	}
 
-	public LocalTime getTime() {
+	public LocalDateTime getTime() {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
+	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
 	

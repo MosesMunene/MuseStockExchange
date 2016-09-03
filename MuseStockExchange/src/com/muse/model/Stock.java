@@ -1,6 +1,7 @@
 package com.muse.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class Stock implements Serializable{
 	private double parValue;
 	
 	@Column(name = "current_price")
-	private double currentPrice;
+	private BigDecimal currentPrice;
 	
 	public Stock() {
 		// TODO Auto-generated constructor stub
@@ -88,11 +89,11 @@ public class Stock implements Serializable{
 		this.parValue = parValue;
 	}
 
-	public double getCurrentPrice() {
+	public BigDecimal getCurrentPrice() {
 		return currentPrice;
 	}
 
-	public void setCurrentPrice(double currentPrice) {
+	public void setCurrentPrice(BigDecimal currentPrice) {
 		this.currentPrice = currentPrice;
 	}
 

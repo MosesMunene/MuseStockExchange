@@ -24,9 +24,6 @@ public class PersonServices{
 	EntityManager em;
 
 	public Person savePerson(Person person) {
-		System.out.println(person.getCredential());
-		em.persist(person.getCredential());
-		System.out.println("After persist(person.getCredential)");
 		em.persist(person);
 		System.out.println("After persist: " + person);
 		return em.createNamedQuery("person.findByEmail", Person.class).setParameter("email", person.getCredential().getUserName()).getSingleResult();
@@ -48,6 +45,8 @@ public class PersonServices{
 //	}
 
 	public AuthAccessElement createUser(AuthLoginElement element) {
+		System.out.println("PersonServices#createUser" + element);
+		
 		Credential credential = new Credential();
 		credential.setUserName(element.getUsername());
 		credential.setPassword(element.getPassword());
@@ -55,6 +54,7 @@ public class PersonServices{
 
 		Person person = new Person();
 		person.setCredential(credential);
+		
 		person = this.savePerson(person);
 		if (person != null) {
 			person.setAuthAccessElement(new AuthAccessElement(person));
@@ -100,6 +100,16 @@ public class PersonServices{
 		em.remove(person.getAuthAccessElement());
 		person.setAuthAccessElement(null);		
 		em.flush();
-		System.out.println("PersonServices#login: AccessElement deleted " + accessElement);
+		System.out.println("PersonServices#logout: AccessElement deleted " + accessElement);
+	}
+
+	public Person getByPersonId(String personId) {
+		return em.find(Person.class, personId);
+	}
+
+	public Person getSystemPerson() {
+		TypedQuery<Person> query = em.createQuery("select p from Person p where p.credential.role = :role", Person.class); 
+		query.setParameter("role", Role.SYSTEM);
+		return query.getSingleResult();
 	}
 }

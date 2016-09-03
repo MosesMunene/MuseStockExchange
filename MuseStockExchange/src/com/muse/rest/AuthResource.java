@@ -73,8 +73,7 @@ public class AuthResource {
 	@Path("logout")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void logout(@Context HttpServletRequest request, AuthAccessElement accessElement) {	
-		System.out.println("PersonServices#login: AccessElement created " + accessElement);
-		//personServices.deauthenticate(accessElement);
+		personServices.deauthenticate(accessElement);
 		return;
 	}
 

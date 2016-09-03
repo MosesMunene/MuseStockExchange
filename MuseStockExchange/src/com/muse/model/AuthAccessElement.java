@@ -22,6 +22,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.muse.rest.LocalDateTimeDeserializer;
+import com.muse.rest.LocalDateTimeSerializer;
 
 @XmlRootElement
 @Entity
@@ -53,10 +57,14 @@ public class AuthAccessElement implements Serializable {
 
 	@Column(name = "created")
 	@XmlElement
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	LocalDateTime created = LocalDateTime.now();
 
 	@Column(name = "expiry")
 	@XmlElement
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	LocalDateTime expiry = LocalDateTime.now().plus(Duration.ofMinutes(30));
 
 	@Transient
