@@ -21,7 +21,9 @@ This provides the REST API. See https://github.com/MosesMunene/MuseStockExchange
 #Procedure
  - Clone this repo on eclipse, 
  - install GlassFish 4.1 
- - Run muse_stock_exchange_ddl.sql in Mysql
+ - Patch Glassfish by downloading jackson-module-jaxb-annotations-2.3.2.jar and putting it into the modules directory,
+ - Run muse_stock_exchange_ddl.sql  found in META_INF in Mysql
+ - Run muse_stock_exchange_initial.sql found in META_INF in Mysql
  
 #Tests
  Coming soon...
