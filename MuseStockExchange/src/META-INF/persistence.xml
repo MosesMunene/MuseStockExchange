@@ -7,16 +7,16 @@
 		transaction-type="JTA">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>java/museDS__pm</jta-data-source>
-		<class>com.muse.model.Person</class>
-		<class>com.muse.model.Credential</class>
 		<class>com.muse.model.AuthAccessElement</class>
-		<class>com.muse.model.Company</class>
-		<class>com.muse.model.Stock</class>
-		<class>com.muse.model.Order</class>
-		<class>com.muse.model.PersonStock</class>
-		<class>com.muse.model.StockTransaction</class>
 		<class>com.muse.model.CashTransaction</class>
+		<class>com.muse.model.Company</class>
+		<class>com.muse.model.Credential</class>
 		<class>com.muse.model.LocalDateTimeConverter</class>
+		<class>com.muse.model.Order</class>
+		<class>com.muse.model.Person</class>
+		<class>com.muse.model.PersonStock</class>
+		<class>com.muse.model.Stock</class>
+		<class>com.muse.model.StockTransaction</class>
 		<properties>
 			<property name="eclipselink.session.customizer" value="com.muse.model.UUIDSequence" />
 			<property name="eclipselink.logging.level.sql" value="FINE" />
